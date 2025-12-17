@@ -9,6 +9,7 @@ services:
       PGDATA: "/var/lib/postgresql/18/docker"
     volumes:
       - postgres_data:/var/lib/postgresql
+      - ./schemes:/docker-entrypoint-initdb.d/
     ports:
       - 5432:5432
     healthcheck:
@@ -33,6 +34,7 @@ services:
       PGADMIN_CONFIG_SERVER_MODE: "False"
     volumes:
       - pgadmin_data:/var/lib/pgadmin
+      - ./pgadmin/servers:/pgadmin4/servers
     ports:
       - "5050:80"
     restart: unless-stopped
